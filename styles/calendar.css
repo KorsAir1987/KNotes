@@ -61,3 +61,12 @@
     border-color: #ff9800;
     color: #ff9800;
 }
+.day.hasnote {
+    border-bottom-color: #ff9800;
+    color: #ff9800;
+    font-weight: bold;
+}
+.day.hasnote-othermonth {
+    border-bottom-color: #cc6600;
+    color: #cc6600;
+}
