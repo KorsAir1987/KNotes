@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K Notes</title>
+    <link rel="stylesheet" href="styles/site.css">
+    <link rel="stylesheet" href="styles/notes.css">
+    <link rel="stylesheet" href="styles/calendar.css">
+</head>
+<body>
+    <div class="main">
+        <h2>Journaling App</h2>
+        <div class="container">
+            <div class="container-calendar">
+                <div class="calendar">
+                    <div class="calendar-header">
+                        <button onclick="changeYear(-1)">&#8592;</button>
+                        <span id="year">2025</span>
+                        <button onclick="changeYear(1)">&#8594;</button>
+                    </div>
+                    <div class="calendar-header">
+                        <button onclick="changeMonth(-1)">&#8592;</button>
+                        <span id="month">March</span>
+                        <button onclick="changeMonth(1)">&#8594;</button>
+                    </div>
+                    <div class="calendar-days" id="days"></div>
+                </div>
+            </div>
+            <div class="container-notes">
+                <h3>Journal Entry</h3>
+                <textarea id="notes-text" placeholder="Write your thoughts..."></textarea>
+                <button class="primary-button">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="javascript/calendar.js"></script>
+    <script>
+        renderCalendar();
+    </script>
+</body>
+</html>
