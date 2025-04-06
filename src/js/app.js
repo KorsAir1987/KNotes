@@ -1,3 +1,7 @@
+import { NoteStorage } from "./notes-storage";
+import '../styles/site.css';
+import '../styles/calendar.css';
+
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
@@ -121,4 +125,8 @@ document.addEventListener('DOMContentLoaded', function() {
     renderCalendar();
     updateNotesTitle();
     document.getElementById("notes-button").addEventListener("click", saveNote);
+    document.getElementById("previous-year").addEventListener("click", () => changeYear(-1));
+    document.getElementById("next-year").addEventListener("click", () => changeYear(1));
+    document.getElementById("previous-month").addEventListener("click", () => changeMonth(-1));
+    document.getElementById("next-month").addEventListener("click", () => changeMonth(1));
 });

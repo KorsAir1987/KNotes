@@ -33,3 +33,5 @@ const NoteStorage = (() => {
         deleteNote
     };
 })();
+
+export { NoteStorage };

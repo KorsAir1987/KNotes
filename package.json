@@ -1,23 +1,23 @@
 {
   "name": "knotes",
   "version": "1.0.0",
-  "description": "A javascript note-taking application.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rm -rf public/*",
-    "build": "npm run clean && mkdir -p public && cp -r html/*.html public/ && cp -r styles public/ && cp -r javascript public/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/KorsAir1987/KNotes.git"
-  },
-  "keywords": [],
-  "author": "",
+  "description": "Note taking app",
+  "keywords": [
+    "notes",
+    "calendar"
+  ],
   "license": "ISC",
+  "author": "Eduardo Knopfli",
   "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/KorsAir1987/KNotes/issues"
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "homepage": "https://github.com/KorsAir1987/KNotes#readme"
+  "devDependencies": {
+    "vite": "^6.2.5"
+  },
+  "dependencies": {
+    "firebase": "^11.6.0"
+  }
 }
