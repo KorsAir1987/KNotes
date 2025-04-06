@@ -98,3 +98,11 @@ textarea {
 .login-form button:hover {
     background-color: #e68900;
 }
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    display: none; /* Initially hidden */
+    text-align: center;
+}

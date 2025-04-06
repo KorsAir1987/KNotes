@@ -2,7 +2,8 @@ import { initializeApp } from 'firebase/app';
 import { 
     getAuth, 
     connectAuthEmulator,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    AuthErrorCodes
 } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -22,13 +23,44 @@ const firebaseConfig = {
 const txtUsername = document.getElementById("username");
 const txtPassword = document.getElementById("password");
 const btnLogin = document.getElementById("login-button");
+const divLoginError = document.getElementById("login-error");
+
+const divMainContent = document.getElementById("main-content");
+const divLoginForm = document.getElementById("login-form");
+
+const hideLoginError = () => {
+    divLoginError.style.display = 'none';
+    divLoginError.innerHTML = '';
+}
+
+const showLoginError = (error) => {
+    divLoginError.style.display = 'block';
+    if(error.code == AuthErrorCodes.INVALID_PASSWORD) {
+        divLoginError.innerHTML = 'Wrong password. Try again.';
+    } else {
+        divLoginError.innerHTML = `Error: ${error.message}`;
+    }
+}
 
 const loginEmailPassword = async() => {
     const loginEmail = txtUsername.value;
     const loginPassword = txtPassword.value;
 
-    const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-    console.log(userCredential.user);
+    try 
+    {
+        const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+        console.log(userCredential.user);
+        divMainContent.style.display = 'flex';
+        divLoginForm.style.display = 'none';
+    } catch(error) {
+        showLoginError(error);
+        console.log(error);
+    }
+    
 }
+
+const createAccount = async() => {
+
+};
 
 btnLogin.addEventListener("click", loginEmailPassword);
