@@ -6,4 +6,4 @@ A javascript note-taking application.
 
 - npm run dev
 
-- (optional for local testing) firebase emulators:start
+- (optional for local testing) firebase emulators:start --only auth

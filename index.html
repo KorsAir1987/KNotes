@@ -7,18 +7,39 @@
 </head>
 <body>
     <div class="main">
-
         <h2>K Notes</h2>
         
-        <div id="login-form" class="login-form">
-            <h3 class="login-heading">Login</h3>
+        <div id="loginDiv" class="authDiv">
+            <div id="login-form" class="login-form">
+                <h3 class="login-heading">Login</h3>
+                <div>
+                    <input type="email" id="username" class="login-input" placeholder="Email" required />
+                    <input type="password" id="password" class="login-input" placeholder="Password" required />
+                    <button id="login-button" class="primary-button">Login</button>
+                    <div id="login-error" class="error-message"></div>
+                </div>
+            </div>
             <div>
-                <input type="text" id="username" class="login-input" placeholder="Username" required />
-                <input type="password" id="password" class="login-input" placeholder="Password" required />
-                <button id="login-button" class="primary-button">Login</button>
-                <div id="login-error" class="error-message"></div>
+                <a id="createAccountLink" class="underAuthFormLink" href="/">Create Account</a>
             </div>
         </div>
+        
+        <div id="signupDiv" class="authDiv" style="display:none">
+            <div id="signup-form" class="login-form">
+                <h3 class="login-heading">Create Account</h3>
+                <div>
+                    <input type="email" id="signup-username" class="login-input" placeholder="Email" required />
+                    <input type="password" id="signup-password" class="login-input" placeholder="Password" required />
+                    <input type="password" id="signup-confirmpassword" class="login-input" placeholder="Confirm Password" required />
+                    <button id="signup-button" class="primary-button">Create Account</button>
+                    <div id="signup-error" class="error-message"></div>
+                </div>
+            </div>
+            <div>
+                <a id="goBackCreateAccountLink" class="underAuthFormLink" href="/">Back</a>
+            </div>
+        </div>
+        
 
         <div class="container" id="main-content" style="display:none">
             <div class="container-calendar">
@@ -43,6 +64,9 @@
             </div>
         </div>
 
+        <div id="spinner-container">
+            <div id="loading-spinner" class="loading-spinner" style="display:none"></div>
+        </div>
     </div>
 
     <script type="module" src="src/js/notes-storage.js"></script>
