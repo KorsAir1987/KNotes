@@ -1,7 +1,16 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #121212;
     color: white;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #ff9800;
 }
 
 .primary-button {
@@ -87,7 +96,7 @@ textarea {
 
 .login-heading {
     font-size: 24px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .login-form button {
@@ -107,6 +116,10 @@ textarea {
 .login-form button[disabled] {
     background-color: #e68900;
     cursor: default;
+}
+
+#signup-complete {
+    padding-bottom: 50px;
 }
 
 .underAuthFormLink {
@@ -155,3 +168,5 @@ textarea {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+

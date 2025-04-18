@@ -6,8 +6,18 @@
     <title>K Notes</title>
 </head>
 <body>
+    <header id="app-header" class="top-bar">
+        <div class="top-bar-section"><div id="mainTitle" class="logo"><span>K</span>Notes</div></div>
+        <div class="top-bar-section user-info loggedin-data" style="display:none">
+            <span>Welcome, <strong id="header-username">[User Name]</strong></span>
+        </div>
+        <div class="top-bar-section actions loggedin-data" style="display:none">
+            <button id="logout-button" class="icon-button" title="Sign Out">
+                <i class="fas fa-right-from-bracket"></i>
+            </button>
+        </div>
+    </header>
     <div class="main">
-        <h2>K Notes</h2>
         
         <div id="loginDiv" class="authDiv">
             <div id="login-form" class="login-form">
@@ -26,20 +36,27 @@
         
         <div id="signupDiv" class="authDiv" style="display:none">
             <div id="signup-form" class="login-form">
-                <h3 class="login-heading">Create Account</h3>
-                <div>
-                    <input type="email" id="signup-username" class="login-input" placeholder="Email" required />
-                    <input type="password" id="signup-password" class="login-input" placeholder="Password" required />
-                    <input type="password" id="signup-confirmpassword" class="login-input" placeholder="Confirm Password" required />
-                    <button id="signup-button" class="primary-button">Create Account</button>
-                    <div id="signup-error" class="error-message"></div>
+                <div id="signup-create">
+                    <h3 class="login-heading">Create Account</h3>
+                    <div>
+                        <input type="email" id="signup-username" class="login-input" placeholder="Email" required />
+                        <input type="password" id="signup-password" class="login-input" placeholder="Password" required />
+                        <input type="password" id="signup-confirmpassword" class="login-input" placeholder="Confirm Password" required />
+                        <button id="signup-button" class="primary-button">Create Account</button>
+                        <div id="signup-error" class="error-message"></div>
+                    </div>
+                </div>
+                <div id="signup-complete" style="display:none">
+                    <h3 class="login-heading">Account Created!</h3>
+                    <div>
+                        <p>Your account was created!</p>
+                    </div>
                 </div>
             </div>
             <div>
                 <a id="goBackCreateAccountLink" class="underAuthFormLink" href="/">Back</a>
             </div>
         </div>
-        
 
         <div class="container" id="main-content" style="display:none">
             <div class="container-calendar">

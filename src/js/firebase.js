@@ -4,7 +4,9 @@ import {
     connectAuthEmulator,
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
-    AuthErrorCodes
+    AuthErrorCodes,
+    onAuthStateChanged,
+    signOut
 } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -25,11 +27,16 @@ const divMainContent = document.getElementById("main-content");
 const divLoginDiv = document.getElementById("loginDiv");
 const divSignupDiv = document.getElementById("signupDiv");
 
+const loggedInData = document.querySelectorAll(".loggedin-data");
+
 const txtUsername = document.getElementById("username");
 const txtPassword = document.getElementById("password");
 const btnLogin = document.getElementById("login-button");
 const divLoginError = document.getElementById("login-error");
+const btnLogout = document.getElementById("logout-button");
 
+const divSignupCreate = document.getElementById("signup-create");
+const divSignupComplete = document.getElementById("signup-complete");
 const txtSignupUsername = document.getElementById("signup-username");
 const txtSignupPassword = document.getElementById("signup-password");
 const txtSignupConfirmPassword = document.getElementById("signup-confirmpassword");
@@ -70,7 +77,9 @@ const showSignupError = (error) => {
         divSignupError.innerHTML = 'Invalid e-mail. Try again.';
     } else if(error.code == AuthErrorCodes.EMAIL_EXISTS) {
         divSignupError.innerHTML = 'E-mail already exists. Try again.';
-    } else if(error.code == 'custom') {
+    } else if(error.code == AuthErrorCodes.WEAK_PASSWORD) {
+        divSignupError.innerHTML = 'Password should be at least 6 characters.';
+    }  else if(error.code == 'custom') {
         divSignupError.innerHTML = error.message;
     } else {
         divSignupError.innerHTML = `Error.`;
@@ -78,18 +87,33 @@ const showSignupError = (error) => {
 }
 
 const showLogin = async(e) => {
-    e.preventDefault();
+    if(e)
+        e.preventDefault();
     
+    divMainContent.style.display = 'none';
     divLoginDiv.style.display = '';
     divSignupDiv.style.display = 'none';
 };
 
 const showCreateAccount = async(e) => {
-    e.preventDefault();
+    if(e)
+        e.preventDefault();
     
+    divMainContent.style.display = 'none';
     divLoginDiv.style.display = 'none';
     divSignupDiv.style.display = '';
 };
+
+const showCalendar = () => {
+    divMainContent.style.display = 'flex';
+    divLoginDiv.style.display = 'none';
+    divSignupDiv.style.display = 'none';
+}
+
+const changeUsername = (newUsername) => {
+    const headerUsername = document.getElementById('header-username');
+    headerUsername.innerHTML = newUsername;
+}
 
 
 const loginEmailPassword = async() => {
@@ -101,21 +125,19 @@ const loginEmailPassword = async() => {
 
     if(loginEmail == '' || loginPassword == '') {
         showLoginError({ code: 'custom', message: 'Please fill in all fields.'});
-        return;
+        
+    } else {
+        try 
+        {
+            const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+            console.log(userCredential.user);
+        } catch(error) {
+            showLoginError(error);
+            console.log(error);
+        }
     }
 
-    try 
-    {
-        const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-        console.log(userCredential.user);
-        divMainContent.style.display = 'flex';
-        divLoginDiv.style.display = 'none';
-    } catch(error) {
-        showLoginError(error);
-        console.log(error);
-    }
-
-    btnLogin.setAttribute("disabled", "");
+    btnLogin.removeAttribute("disabled");
     loadingSpinner.style.display = 'none';
     
 }
@@ -138,6 +160,8 @@ const createAccountEmailPassword = async(e) => {
 
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, signupEmail, signupPassword);
+        divSignupCreate.style = "display:none";
+        divSignupComplete.style = "";
         console.log(userCredential.user);
 
     } catch(error) {
@@ -147,7 +171,32 @@ const createAccountEmailPassword = async(e) => {
     
 };
 
+const monitorAuthState = async() => {
+    onAuthStateChanged(auth, user => {
+        if(user) {
+            changeUsername(user.email);
+            showCalendar();
+            console.log(user);
+            loggedInData.forEach(el => {
+                el.style.display = '';
+              });
+        } else {
+            loggedInData.forEach(el => {
+                el.style.display = 'none';
+              });
+        }
+    });
+}
+
+const logout = async () => {
+    await signOut(auth);
+    showLogin();
+}
+
 btnLogin.addEventListener("click", loginEmailPassword);
 btnSignup.addEventListener("click", createAccountEmailPassword);
 createAccountLink.addEventListener("click", showCreateAccount);
 goBackCreateAccountLink.addEventListener("click", showLogin);
+btnLogout.addEventListener("click", logout);
+
+monitorAuthState();

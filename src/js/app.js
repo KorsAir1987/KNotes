@@ -1,6 +1,8 @@
 import { NoteStorage } from "./notes-storage";
 import '../styles/site.css';
 import '../styles/calendar.css';
+import '../styles/topbar.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let currentMonth = new Date().getMonth();

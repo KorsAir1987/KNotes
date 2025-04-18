@@ -1,0 +1,83 @@
+.top-bar {
+    position: fixed; /* Sticks to the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1e1e1e; /* Dark background */
+    padding: 10px 25px; /* Vertical and horizontal padding */
+    display: flex;
+    justify-content: space-between; /* Distributes space between sections */
+    align-items: center; /* Vertically aligns items in the center */
+    z-index: 1000; /* Ensures it stays on top of other content */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    box-sizing: border-box; /* Include padding in width calculation */
+    height: 50px; /* Define a fixed height */
+}
+
+.top-bar-section {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Spacing between items within a section */
+}
+
+/* Adjust flex properties if needed for specific sections */
+/* .top-bar-section.user-info {} */
+/* .top-bar-section.search-area {} */
+/* .top-bar-section.actions {} */
+
+.top-bar .user-info span {
+    color: #e0e0e0; /* Light grey text */
+    font-size: 0.9em;
+}
+
+.top-bar .user-info strong {
+    color: #ffffff; /* White text for name */
+    font-weight: bold;
+}
+
+.top-bar .search-area input[type="search"] {
+    padding: 8px 12px;
+    border: 1px solid #444;
+    background-color: #252525;
+    color: white;
+    border-radius: 5px;
+    min-width: 250px; /* Give it some minimum width */
+    font-size: 0.9em;
+}
+
+/* Adjust button styles if needed - using primary-button from site.css */
+.top-bar button {
+    padding: 8px 15px; /* Slightly smaller padding for header buttons */
+    cursor: pointer;
+    /* primary-button class already styles it */
+}
+
+/* Specific style for search button if needed */
+.top-bar .search-btn {
+    width: auto; /* Override width: 100% from primary-button if needed */
+    margin-top: 0; /* Override margin-top from primary-button */
+}
+
+/* Adjust button styling for header context if needed */
+.top-bar .primary-button {
+    width: auto; /* Prevent buttons from taking full width */
+    margin-top: 0; /* Remove top margin */
+    padding: 8px 15px; /* Adjust padding */
+}
+
+.icon-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 20px;
+    transition: color 0.2s ease;
+}
+
+.icon-button:hover {
+    color: #ff9800;
+}
